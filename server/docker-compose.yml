@@ -1,0 +1,27 @@
+web:
+  build: .
+  working_dir: /go/src
+  ports:
+   - "5000:5000"
+  volumes:
+   - .:/go/src
+  links:
+    - redis
+    - mysql
+redis:
+  image: redis
+  ports:
+   - "6379:6379"
+mysql:
+  image: mysql:5.7
+  ports:
+    - '3306:3306'
+  volumes:
+    - db_data:/var/lib/mysql
+  restart: always
+  environment:
+    MYSQL_ROOT_PASSWORD: qwerty
+    MYSQL_DATABASE: dressme
+    MYSQL_USER: root
+    MYSQL_PASSWORD: qwerty
+ 

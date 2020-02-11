@@ -1,0 +1,180 @@
+@font-face {
+  font-family: 'very-u';
+  src: url('font-family/Very-You.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'caviar-dreams';
+  src: url('font-family/CaviarDreams_Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'caviar-dreams-it';
+  src: url('font-family/CaviarDreams_BoldItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body, #root, #app, #content {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'caviar-dreams';
+}
+
+a {
+  font-size: smaller;
+  color:white !important;
+  font-family: 'caviar-dreams-it';
+}
+
+hr {
+  width: 100%;
+  background: white;
+}
+
+#header {
+  height: 70px ;
+  padding: 10px 0px;
+  font-size: xx-large;
+  background:	white;
+  color:	#485a74;
+  font-family: "very-u";
+}
+
+#wardrobe, #home, #signup{
+  height: calc(100% - 70px) ;
+}
+
+#home, #signup{
+  background:	#485a74;
+}
+
+
+/* ///////////////HOME////////////////// */
+
+
+/* ###########WARDROBE############### */
+
+
+#wardrobe{
+  background: white;
+}
+
+
+#menu {
+  background:	white;
+  /* width: 130px; */
+  overflow: scroll;
+}
+
+.category{
+  min-height: 50px;
+  color: #485a74;
+  font-size: large;
+  background-color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.category-active{
+  min-height: 50px;
+  color: white;
+  font-size: large;
+  background-color: #485a74;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.sub-category{
+  min-height: 50px;
+  color: #485a74;
+  font-size: large;
+  background-color: #485a7461;
+  cursor: pointer;
+  padding: 5px;
+}
+
+
+.sub-category:hover{
+  background: #485a74bd;
+    color: white;
+}
+
+#list {
+  width: calc(100% - 120px);
+  height: 100%;
+  /* background:	red; */
+}
+
+#header-list {
+  width: 100%;
+  height: 100px;
+  background:	blue;
+}
+
+#show-list {
+  width: calc(100% - 120px);
+  background:	red;
+}
+
+/* ###########ITEM############### */
+
+#item{
+  background: white;
+  width: 100%;
+  height: calc(100% - 70px) ;
+}
+
+/* ###########INPUT############### */
+
+.input{
+  width: 80%;
+  height: 50px;
+  display: flex;
+  padding: 10px;
+  margin: 0 auto;  
+}
+
+.input-input{
+  width: 100%;
+  font-size: medium;
+  border: none;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+
+/* ###########INPUT############### */
+
+.w-med{
+  font-size: medium;
+  color:	white;
+}
+
+.w-small-it{
+  font-size: smaller;
+  color:	white;
+  font-family: 'caviar-dreams-it';
+}
+
+
+.w-med-it{
+  font-size: medium;
+  color:	white;
+  font-family: 'caviar-dreams-it';
+}
+
+/* ###########CENTER############### */
+
+.item-center{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
