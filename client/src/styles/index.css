@@ -113,14 +113,13 @@ hr {
 }
 
 #header-list {
-  width: 100%;
-  height: 100px;
-  background:	blue;
+  /* width: 100%; */
+  /* height: 100px; */
+  /* background:	blue; */
 }
 
 #show-list {
-  width: calc(100% - 120px);
-  background:	red;
+  /* background:	red; */
 }
 
 /* ###########ITEM############### */
