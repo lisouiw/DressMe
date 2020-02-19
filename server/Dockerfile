@@ -1,9 +1,8 @@
-FROM golang:1.5
-
-ADD . /go/src/app
-WORKDIR /go/src
-RUN go get app
-RUN go install app
-ENTRYPOINT /go/bin/app
-
-EXPOSE 5000
+FROM node:10
+WORKDIR /Users/lisouiw/42/DressMe/server
+EXPOSE 8000
+COPY package*.json /Users/lisouiw/42/DressMe/server/
+RUN npm install
+COPY . /Users/lisouiw/42/DressMe/server/
+# CMD ["npm", "run", "init"]
+CMD ["npm", "run", "start"]
