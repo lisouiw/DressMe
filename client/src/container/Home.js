@@ -1,6 +1,6 @@
 import React from 'react';
 import { Signin } from '../Route';
-import Input from '../component/Input';
+import { Container, Button, Col } from 'react-bootstrap';
 
 
 
@@ -9,13 +9,13 @@ function Home(props) {
     const className = "text-center d-flex justify-content-center "
 
     return (
-        <div id="home" className={className}>
-            <div className="col-md-6 m-auto">
+        <Container id="home" fluid className={className}>
+            <Col sm="4" className="m-auto">
                 <Signin />
                 <hr />
-                <Input type="button" value="Sign Up" onClick={() => signupPage()} />
-            </div>
-        </div>
+                <Button type="submit" onClick={() => signupPage()}>Sign Up</Button>
+            </Col>
+        </Container>
     )
 }
 

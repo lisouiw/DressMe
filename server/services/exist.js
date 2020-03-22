@@ -1,4 +1,4 @@
-let pool = require('../sql/pool')
+let pool = require('./pool')
 
 exports.existEmail = async (email, id) => {
     return new Promise(function (resolve, reject) {

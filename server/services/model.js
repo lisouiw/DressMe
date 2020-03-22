@@ -1,7 +1,8 @@
-const pool = require('../sql/pool')
+const pool = require('./pool')
 
 const model = async (data, name, tops) => {
   return new Promise(function (resolve, reject) {
+    console.log(data)
     pool()
       .then((client) => {
         const query = require(`../query/${tops}`)

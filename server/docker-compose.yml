@@ -1,26 +1,27 @@
-version: '3.1'
+version: "3.1"
 
 services:
-
-    node:
-        build: ./
-        restart: always
-        depends_on:
-            - db
-        ports:
-            - 8000:8000
-        volumes:
-            - .:/Users/lisouiw/42/DressMe/server
-            - /Users/lisouiw/42/DressMe/server/node_modules
-        links:
-            - db
-    db:
-        image: postgres:latest
-        ports:
-            - "5432:5432"
-        volumes:
-            - ./sql:/docker-entrypoint-initdb.d/
-        environment:
-            POSTGRES_USER: root
-            POSTGRES_PASSWORD: root
-            POSTGRES_DB: dressme
+  node:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    container_name: server_node
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/Users/lisouiw/42/DressMe/server
+  db:
+    image: postgres:latest
+    container_name: server_db
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: dressme
+    depends_on:
+      - node

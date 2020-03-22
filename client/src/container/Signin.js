@@ -1,80 +1,52 @@
-import React from 'react';
-import { Input } from '../Route';
+import React, { useState } from 'react'
+import { FormGroup } from '../Route';
 import { withRouter } from 'react-router-dom';
+import instance from '../utils/instance';
+import { Form, Button } from 'react-bootstrap';
 
 function Signin(props) {
-    const signupPage = () => { props.history.push("/wardrobe") }
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = (event) => {
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            setValidated(true);
+        }
+        else {
+            event.preventDefault();
+            event.stopPropagation();
+            instance({
+                url: "/auth",
+                method: 'get',
+                params: {
+                    email: event.target[0].value,
+                    password: event.target[1].value
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    setValidated(true);
+                })
+                .catch(function (error) {
+                    console.log(error.response.data)
+                    setValidated(true);
+                })
+        }
+
+    };
 
     return (
-        <div>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <p className="w-med">Sign In</p>
-            <Input placeholder="Email" />
-            <Input placeholder="Password" />
-            <p className="w-small-it"> forget password?</p>
-            <Input type="button" value="Connect" onClick={() => signupPage() }/>
-        </div>
+            <FormGroup type="input" component={{ placeholder: "Email", type: "email", required: true }} />
+            <FormGroup type="input" component={{ placeholder: "Password", type: "password", required: true }} />
+            <p className="w-small-it">forget password?</p>
+            <Button type="sumit">Connect</Button>
+        </Form>
     )
 }
 
 export default withRouter(Signin)
-
-
-// import React, { useState } from 'react';
-// import { Input } from '../Route';
-// import { withRouter } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-// import { Form, Col, Modal, Button, InputGroup } from "react-bootstrap";
-// import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
-
-// function Signin(props) {
-//     const [validated, setValidated] = useState(false);
-//     const signupPage = () => { props.history.push("/wardrobe") }
-
-//     const handleSubmit = event => {
-//         const form = event.currentTarget;
-//         if (form.checkValidity() === false) {
-//             event.preventDefault();
-//             event.stopPropagation();
-//         }
-
-//         setValidated(true);
-//     };
-
-
-
-//     return (
-//         <Form className="d-flex text-center  align-items-center flex-column " noValidate validated={validated} onSubmit={handleSubmit}>
-//             <p className="w-med">Sign In</p>
-
-//             <Form.Group as={Col} md="6" controlId="validationCustom01">
-//                 <Form.Control
-//                     type="text"
-//                     placeholder="Username"
-//                     required
-//                 />
-//                 <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
-//             </Form.Group>
-
-//             <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-//                 <Form.Control
-//                     type="text"
-//                     placeholder="Password"
-//                     aria-describedby="inputGroupPrepend"
-//                     required
-//                 />
-
-//                 <Form.Control.Feedback >Looks good!</Form.Control.Feedback>
-//             </Form.Group>
-
-//                          <p className="w-small-it"> forget password?</p>
-
-//             <Input type="button" value="Connect" onClick={() => signupPage() }/>
-//             {/* <Button className="text-center" type="submit md-6">Submit form</Button> */}
-//         </Form>
-
-
-//     )
-// }
-
-// export default withRouter(Signin)

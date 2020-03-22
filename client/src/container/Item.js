@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Item(props) {
-  const signupPage = () => { props.history.push("/wardrobe") }
+  // const signupPage = () => { props.history.push("/wardrobe") }
 
   return (
     <div id="item" class="container-xl m-auto p-5">

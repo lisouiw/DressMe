@@ -1,6 +1,6 @@
 const utils = require("../services/utils")
 
-const getQuery = (id) => ({
+const getQuery = () => ({
     text: 'SELECT * FROM users'
 })
 

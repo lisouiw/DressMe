@@ -11,7 +11,8 @@ const pool = () => {
     return new Promise(function (resolve, reject) {
         new Pool(config).connect()
             .then((client) => resolve(client))
-            .catch(() => {
+            .catch((err) => {
+                console.log(err)
                 reject({ status: "500", error: "db" })
             })
     })

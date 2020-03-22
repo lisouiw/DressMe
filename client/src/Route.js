@@ -10,7 +10,10 @@ import Signup from "./container/Signup"
 import Statistic from "./container/Statistic"
 import Wardrobe from "./container/Wardrobe"
 
-import Input from "./component/Input"
+import FormGroup from "./component/FormGroup"
+import ItemFirst from "./component/ItemFirst"
+import ItemSecond from "./component/ItemSecond"
+import ItemThird from "./component/ItemThird"
 import Menu from "./component/Menu"
 
 export {
@@ -25,6 +28,9 @@ export {
     Signup,
     Statistic,
     Wardrobe,
-    Input,
-    Menu
+    FormGroup,
+    Menu,
+    ItemFirst,
+    ItemSecond,
+    ItemThird,
 }

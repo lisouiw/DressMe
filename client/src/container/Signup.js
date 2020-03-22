@@ -1,22 +1,33 @@
-import React from 'react';
-import { Input } from '../Route';
+import React, { useState } from 'react'
+import { FormGroup } from '../Route';
+import { Form, Button, Col } from 'react-bootstrap';
+
 
 function Signup(props) {
     const className = "d-flex text-center"
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = event => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+    };
 
     return (
-        <div id="signup" className={className}>
-            <div className="col-md-6 m-auto d-flex justify-content-center flex-column">
+        <Form id="signup" className={className} noValidate validated={validated} onSubmit={handleSubmit}>
+            <Col sm="4" className="m-auto">
                 <p className="w-med">Sign Up</p>
-                <Input placeholder="Email" />
-                <Input placeholder="Password" />
-                <Input placeholder="Confirmation" />
-                <Input type="button" value="Create an account" />
-            </div>
-        </div>
+                <FormGroup type="input" component={{ placeholder: "Email", type: "email", required: true }} />
+                <FormGroup type="input" component={{ placeholder: "Password", type: "password", required: true }} />
+                <FormGroup type="input" component={{ placeholder: "Confirmation", type: "password", required: true }} />
+                <Button type="submit">Create an account</Button>
+            </Col>
+        </Form>
     )
 }
-
-
 
 export default Signup

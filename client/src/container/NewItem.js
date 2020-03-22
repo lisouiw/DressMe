@@ -1,175 +1,139 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
+import React, { useState, useEffect } from "react";
+import { FormGroup,ItemFirst, ItemSecond, ItemThird } from "../Route";
+import { get } from "../query";
+import { Form, Button } from "react-bootstrap";
 
-
-
-
-const DatePicker = () => {
-  return (
-    <React.Fragment>
-      <br />
-      <input id="date" type="date" value="2017-06-01" />
-    </React.Fragment>
-  )
-}
-
-const Text = () => {
-  return (
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  )
-}
-
-const Upload = ({ title, placeholder, button }) => {
-
-  return (
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text custom-file" id="inputGroupFileAddon01">Upload</span>
-      </div>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />>
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-      </div>
-    </div>
-  )
-}
-
-const Dropdown = ({ title, placeholder, button }) => {
-
-  return (
-    <div class="btn-group">
-      <button class="btn btn-secondary btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Type of clothes
-      </button>
-      <div class="dropdown-menu">
-        <div>Robe</div>
-        <div>Jean</div>
-        <div>Casquette</div>
-        <div>Veste</div>
-      </div>
-    </div>
-  )
-}
-
-const ButtonGroup = ({ title, placeholder, button }) => {
-
-  return (
-    <div class="form-group">
-      <label for="exampleFormControlFile1">Season</label>
-      <br />
-
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-dark focus">
-          <input type="radio" name="options" id="option1" /> All
-</label>
-        <label class="btn btn-light">
-          <input type="radio" name="options" id="option2" /> Spring
-</label>
-        <label class="btn btn-warning">
-          <input type="radio" name="options" id="option3" />Summer
-</label>
-        <label class="btn btn-danger">
-          <input type="radio" name="options" id="option4" />Autumn
-</label>
-        <label class="btn btn-info focus">
-          <input type="radio" name="options" id="option5" />Winter
-</label>
-      </div>
-
-    </div>
-  )
-}
-
-const InputGroup = ({ title, placeholder}) => {
-
-  return (
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">{title}</span>
-      </div>
-      <input type="text" class="form-control" placeholder={placeholder} aria-label="Recipient's username with two button addons" aria-describedby="button-addon4" />
-      <div class="input-group-append" id="button-addon4">
-        <button class="btn btn-outline-secondary" type="button">
-          <FontAwesomeIcon icon={faPlus} />
-        </button>
-      </div>
-    </div>
-  )
-}
-
-
-const components = {
-  buttonGroup: ButtonGroup,
-  datePicker: DatePicker,
-  dropdown: Dropdown,
-  inputGroup: InputGroup,
-  text: Text,
-  upload: Upload,
+const query = {
+  color: get.getColor,
+  composition: get.getComposition,
+  style: get.getStyle,
+  type: get.getType
 };
 
+const getData = async type => {
+  return new Promise((resolve, reject) => {
+    return query[type]
+      .then(e => resolve(e.data.result))
+      .catch(() => {
+        reject([]);
+      });
+  });
+};
 
-const FormGroup = ({ type, title, children, className, component }) => {
-  let SpecificStory;
+const handleSubmit = (event, setValidated) => {
+  console.log({ ...event.target });
+  const form = event.currentTarget;
+  if (form.checkValidity() === false) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
-  if (type !== "")
-    SpecificStory = components[type];
-  return (
-    <div className={`form-group ${className}`}>
-      <label for="exampleFormControlTextarea1">{title}</label>
+  if (event.target.type === "form") setValidated(true);
+};
+
+const showFileName = (event, title) => {
+  const infoArea = document.getElementById(`${title}-label`);
+  const img = document.getElementById(`${title}-image`);
+  const input = event.srcElement;
+
+  if (input.files[0]) {
+    infoArea.textContent = input.files[0].name;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(input.files[0]);
+
+    reader.onload = function(e) {
+      img.src = e.target.result;
+      // get loaded data and render thumbnail.
+    };
+  }
+};
+
+const initialState = {
+  color: [],
+  composition: [],
+  style: [],
+  type: []
+};
+
+async function fetchData(data, setData, fct) {
+  return Promise.all([
+    getData("color"),
+    getData("composition", setData, data),
+    getData("style", setData, data),
+    getData("type", setData, data)
+  ]).then(e => {
+    setData(
       {
-        SpecificStory
-          ? <SpecificStory {...component}/>
-          : children
-      }
-    </div>
-  )
+        color: e[0],
+        composition: e[1],
+        style: e[2],
+        type: e[3],
+        season: []
+      },
+      fct()
+    );
+  });
 }
 
 function NewItem(props) {
-  const signupPage = () => { props.history.push("/wardrobe") }
+  const [data, setData] = React.useState(initialState);
+  const [form, setForm] = React.useState(initialState);
+  const [validated, setValidated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    let photo = document.getElementById("photo");
+    let washing = document.getElementById("washing");
+
+    if (isLoading === true) {
+      fetchData(data, setData, () => {
+        setIsLoading(false);
+      });
+    } else if (isLoading === false && photo && washing) {
+      photo.addEventListener("change", e => showFileName(e, "photo"));
+      washing.addEventListener("change", e => showFileName(e, "washing"));
+    }
+  });
+
+  const onClick = (i, type) => {
+    type === "type"
+      ? setForm({ ...form, [type]: i })
+      : setForm(old => ({ ...old, [type]: [...old[type], i] }));
+  };
+
+  if (isLoading) return <div>Loading</div>;
   return (
-    <div id="item" class="container-xl m-auto p-5">
+    <div id="item" className="container-xl m-auto p-5">
+      <Form
+        className="p-4"
+        noValidate
+        validated={validated}
+        onSubmit={e => handleSubmit(e, setValidated)}
+      >
+        <ItemFirst onClick={onClick} data={data}/>
+        <ItemSecond onClick={onClick} data={data}/>
+        <ItemThird onClick={onClick} data={data}/>
 
-      <form class="needs-validation" novalidate>
+        <br />
+        <hr />
+        <br />
 
-        <div class="row justify-content-between">
-          <div className="d-flex flex-column justify-content-between col-7 p-0">
-            <FormGroup type="upload" />
-            <FormGroup type="dropdown" />
-            <FormGroup type="datePicker" title="Date d'achat" />
-          </div>
-          <img classname="col-5" style={{ width: "200px" }} src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="rounded float-right" alt="..." />
-        </div>
-
-
-        <FormGroup type="buttonGroup"  className="row" />
-
-        <div className="row justify-content-between">
-          <FormGroup type="upload" title="Washing" />
-          <img classname="col-5" style={{ width: "200px" }} src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="rounded float-right" alt="..." />
-        </div>
-
-        <FormGroup type="inputGroup" component={{title:"Style", placeholder:"Street, boheme,rock..." }}/>
-        <FormGroup type="inputGroup" component={{title:"Color", placeholder:"Street, boheme,rock..." }}/>
-        <FormGroup type="inputGroup" component={{title:"Composition", placeholder:"Street, boheme,rock..." }}/>
-        <FormGroup type="text" title="Notes" />
-
-        <br /><hr /><br />
-
-        <FormGroup title="Tags">
-          <div class="form-control" id="exampleFormControlTextarea1" rows="3">
-            coucou lala
-          </div>
-        </FormGroup>
+        <FormGroup
+          className="row"
+          title="Tags"
+          type="tagDiplay"
+          component={{ tags: ["red", "street", "winter"] }}
+        />
 
         <br />
 
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </form>
+        <Button className="btn btn-primary" type="submit">
+          Submit form
+        </Button>
+      </Form>
     </div>
-  )
+  );
 }
 
-export default NewItem
+export default NewItem;

@@ -1,71 +1,66 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
-
-import {Modal, Button} from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import { Modal, Button } from "react-bootstrap";
 
 function ShowList(props) {
-  const signupPage = () => { props.history.push("/wardrobe") }
 
   return (
     <div id="show-list" className="align-middle text-center">
 
-<Modal  show={false} onHide>
+      <Modal show={false} onHide>
 
 
-  <Modal.Header closeButton>
-    <Modal.Title>Modal title</Modal.Title>
-  </Modal.Header>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
 
-  <Modal.Body>
-    <p>Modal body text goes here.</p>
-  </Modal.Body>
+        <Modal.Body>
+          <p>Modal body text goes here.</p>
+        </Modal.Body>
 
-  <Modal.Footer>
-    <Button variant="secondary">Close</Button>
-    <Button variant="primary">Save changes</Button>
-  </Modal.Footer>
+        <Modal.Footer>
+          <Button variant="secondary">Close</Button>
+          <Button variant="primary">Save changes</Button>
+        </Modal.Footer>
 
-</Modal>
-      <figure class="figure p-2" style={{ width: "200px" }} >
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      </Modal>
+      <figure className="figure p-2" style={{ width: "200px" }} >
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="1" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
-      <figure class="figure p-2" style={{ width: "200px" }}>
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      <figure className="figure p-2" style={{ width: "200px" }}>
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="2" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
-      <figure class="figure p-2" style={{ width: "200px" }}>
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      <figure className="figure p-2" style={{ width: "200px" }}>
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="3" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
-      <figure class="figure p-2" style={{ width: "200px" }}>
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      <figure className="figure p-2" style={{ width: "200px" }}>
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="4" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
-      <figure class="figure p-2" style={{ width: "200px" }}>
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      <figure className="figure p-2" style={{ width: "200px" }}>
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="5" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
-      <figure class="figure p-2" style={{ width: "200px" }}>
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      <figure className="figure p-2" style={{ width: "200px" }}>
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="6" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
-      <figure class="figure p-2" style={{ width: "200px" }}>
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      <figure className="figure p-2" style={{ width: "200px" }}>
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="7" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
-      <figure class="figure p-2" style={{ width: "200px" }}>
-        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="..." />
-        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+      <figure className="figure p-2" style={{ width: "200px" }}>
+        <img src="https://www.morgandetoi.fr/on/demandware.static/-/Sites-Morgan_master/default/dwa2963099/robe-patineuse-manches-longues-rouge-vin-femme-or-32536300774000509.jpg" class="figure-img img-fluid rounded" alt="8" />
+        <figcaption className="figure-caption text-right">A caption for the above image.</figcaption>
       </figure>
     </div>
   )
 }
 
 function HeaderList(props) {
-  const signupPage = () => { props.history.push("/wardrobe") }
+  // const signupPage = () => { props.history.push("/wardrobe") }
 
   return (
     <div id="header-list" className=" row d-flex d-flex justify-content-center mx-3">
@@ -74,9 +69,9 @@ function HeaderList(props) {
           Season
   </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="/">Action</a>
+          <a class="dropdown-item" href="/">Another action</a>
+          <a class="dropdown-item" href="/">Something else here</a>
         </div>
       </div>
 
@@ -85,9 +80,9 @@ function HeaderList(props) {
           Style
   </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="/">Action</a>
+          <a class="dropdown-item" href="/">Another action</a>
+          <a class="dropdown-item" href="/">Something else here</a>
         </div>
       </div>
 
@@ -97,9 +92,9 @@ function HeaderList(props) {
           Composition
   </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="/">Action</a>
+          <a class="dropdown-item" href="/">Another action</a>
+          <a class="dropdown-item" href="/">Something else here</a>
         </div>
       </div>
 
@@ -108,9 +103,9 @@ function HeaderList(props) {
           Color
   </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="/">Action</a>
+          <a class="dropdown-item" href="/">Another action</a>
+          <a class="dropdown-item" href="/">Something else here</a>
         </div>
       </div>
 
@@ -121,7 +116,7 @@ function HeaderList(props) {
 }
 
 function List(props) {
-  const signupPage = () => { props.history.push("/wardrobe") }
+  // const signupPage = () => { props.history.push("/wardrobe") }
 
   return (
     <div id="list" className="col-9 p-0">
